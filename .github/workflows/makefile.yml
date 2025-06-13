@@ -1,0 +1,27 @@
+name: Makefile CI
+
+on:
+  push:
+    branches: [ "lineage_Spacewar-user-15-BP1A.250505.005-eng.androi.20250516.154437-release-keys" ]
+  pull_request:
+    branches: [ "lineage_Spacewar-user-15-BP1A.250505.005-eng.androi.20250516.154437-release-keys" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: configure
+      run: ./configure
+
+    - name: Install dependencies
+      run: make
+
+    - name: Run check
+      run: make check
+
+    - name: Run distcheck
+      run: make distcheck
